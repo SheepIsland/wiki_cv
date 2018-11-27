@@ -12,7 +12,8 @@
 > <img src="https://tex.s2cms.ru/svg/%5Chat%7By%7D%20%3A%20R%5ED%20%E2%86%92%20%20%7B%5C%7B(1%2C2%2C...%2CK%7D%5C%7D" alt="\hat{y} : R^D →  {\{(1,2,...,K}\}" />
 
 #### Алгоритм
-1. Проинициализируем веса для каждого объекта <img src="https://tex.s2cms.ru/svg/w_1%5Ei%20%3D%20%5Cfrac%7B1%7D%7BN%7D%2C%20i%20%3D%201%2C%20.%20.%20.%20%2C%20N" alt="w_1^i = \frac{1}{N}, i = 1, . . . , N" />
+1. Проинициализируем веса для каждого объекта 
+> <img src="https://tex.s2cms.ru/svg/w_1%5Ei%20%3D%20%5Cfrac%7B1%7D%7BN%7D%2C%20i%20%3D%201%2C%20.%20.%20.%20%2C%20N" alt="w_1^i = \frac{1}{N}, i = 1, . . . , N" />
 1. Для всех <img src="https://tex.s2cms.ru/svg/l%20%3D%201%2C...%2CL" alt="l = 1,...,L" />
 1. Обучим базовый алгоритм <img src="https://tex.s2cms.ru/svg/%5Chat%7By%7D_l" alt="\hat{y}_l" /> при помощи весов <img src="https://tex.s2cms.ru/svg/w_n%5El" alt="w_n^l" />
 1. Вычислим взвешенную ошибку <img src="https://tex.s2cms.ru/svg/%5Cvarepsilon_l%20" alt="\varepsilon_l " /> алгоритма <img src="https://tex.s2cms.ru/svg/%5Chat%7By%7D_l" alt="\hat{y}_l" /> :
@@ -33,9 +34,6 @@
 SAMME является прямым обобщением AdaBoost, так как при K = 2, SAMME становится эквивалентен двухклассовому AdaBoost.
 
 Схематично SAMME изображен на Рис. 1
-
-
-### Схематично:
 
 
 ![Paper written in LaTeX](samme.jpg)
