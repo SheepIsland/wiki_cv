@@ -35,8 +35,13 @@ SAMME является прямым обобщением AdaBoost, так как
 Схематично SAMME изображен на Рис. 1
 
 
+### Схематично:
+
+
 ![Paper written in LaTeX](samme.jpg)
 
 ***
+Схематичное описание алгоритма SAMME. На каждом шаге при помощи весов обучается
+новая модель <img src="https://tex.s2cms.ru/svg/y_l" alt="y_l" /> на X и определяется ее вес <img src="https://tex.s2cms.ru/svg/%5Calpha_l" alt="\alpha_l" />.
 
 Кулакова Виолетта, 895a
