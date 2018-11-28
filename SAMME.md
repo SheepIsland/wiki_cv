@@ -9,7 +9,8 @@
 #### Дано
   1. К - количество классов, D - количество признаков
   1. Обучающая выборка <img src="https://tex.s2cms.ru/svg/S%20%3D%20%7B%5C%7B(x_i%2C%20y_i)%7D%5C%7D_%7Bi%3D1%7D%5EN%20%3D%20(X%2C%20y)" alt="S = {\{(x_i, y_i)}\}_{i=1}^N = (X, y)" />, где <img src="https://tex.s2cms.ru/svg/x_i%20%E2%88%88%20R%5ED" alt="x_i ∈ R^D" /> — вектор признаков, а <img src="https://tex.s2cms.ru/svg/y_i" alt="y_i" /> принимает значения из конечного множества <img src="https://tex.s2cms.ru/svg/%7B%5C%7B1%2C2%2C...%2CK%7D%5C%7D" alt="{\{1,2,...,K}\}" />
->Выборку S удобно записать в виде матрицы <img src="https://tex.s2cms.ru/svg/X%20%E2%88%88%20R%5E%7BN%5Ctimes%20D%7D" alt="X ∈ R^{N\times D}" />, строками которой являются <img src="https://tex.s2cms.ru/svg/x%5E%E2%8A%A4_i" alt="x^⊤_i" /> , и вектора <img src="https://tex.s2cms.ru/svg/y%20%3D%20(y_1%2C%20.%20.%20.%20%2C%20y_N%20)%5E%E2%8A%A4" alt="y = (y_1, . . . , y_N )^⊤" />:
+>Выборку S удобно записать в виде матрицы 
+<img src="https://tex.s2cms.ru/svg/X%20%E2%88%88%20R%5E%7BN%5Ctimes%20D%7D" alt="X ∈ R^{N\times D}" />, строками которой являются <img src="https://tex.s2cms.ru/svg/x%5E%E2%8A%A4_i" alt="x^⊤_i" /> , и вектора <img src="https://tex.s2cms.ru/svg/y%20%3D%20(y_1%2C%20.%20.%20.%20%2C%20y_N%20)%5E%E2%8A%A4" alt="y = (y_1, . . . , y_N )^⊤" />:
 
 >   <img src="https://tex.s2cms.ru/svg/S%3D%20(X%2C%20y)" alt="S= (X, y)" />
 
@@ -35,6 +36,7 @@ Hа основе данной выборки построить решающее
 > d. Пересчитаем и нормализуем веса: 
 
 > <img src="https://tex.s2cms.ru/svg/%5Cbar%7Bw%7D_i%5E%7Bl%2B1%7D%3Dw_i%5El%5Ccdot%20exp(%5Calpha_l%5Ccdot%5B%5Chat%7By%7D_l(X_i)%5Cne%20y_i%5D%2Ci%3D1%2C..%2CN%2C" alt="\bar{w}_i^{l+1}=w_i^l\cdot exp(\alpha_l\cdot[\hat{y}_l(X_i)\ne y_i],i=1,..,N," />
+
   > <img src="https://tex.s2cms.ru/svg/w_i%5E%7Bl%2B1%7D%3D%5Cfrac%7B%5Cbar%7Bw%7D_i%5E%7Bl%2B1%7D%7D%7B%5Csum_%7Bl%3D1%7D%5E%7BL%7D%20%5Cbar%7Bw%7D_i%5E%7Bl%2B1%7D%7D%2Ci%3D1%2C..%2CN" alt="w_i^{l+1}=\frac{\bar{w}_i^{l+1}}{\sum_{l=1}^{L} \bar{w}_i^{l+1}},i=1,..,N" />
 
 
@@ -42,7 +44,18 @@ Hа основе данной выборки построить решающее
 > <img src="https://tex.s2cms.ru/svg/%5Chat%7By%7D%20(X)%3Darg%5Cmax_%7Bk%7D%5Csum_%7Bl%3D1%7D%5E%7BL%7D%20%5Calpha_l%5B%5Chat%7By%7D_l(X)%3D%20y%5D" alt="\hat{y} (X)=arg\max_{k}\sum_{l=1}^{L} \alpha_l[\hat{y}_l(X)= y]" />
 
 ***
-Алгоритм SAMME имеет одну и ту же структуру что и AdaBoost, с простой но тонкой разницей в <img src="https://tex.s2cms.ru/svg/(1)" alt="(1)" />. Очевидно, что при K = 2, SAMME сводится к AdaBoost. Добавление <img src="https://tex.s2cms.ru/svg/ln%20(K%20-%201)" alt="ln (K - 1)" /> в <img src="https://tex.s2cms.ru/svg/(1)" alt="(1)" /> является критическим в многоклассовом случае <img src="https://tex.s2cms.ru/svg/(K%20%3E%202)" alt="(K &gt; 2)" />. Непосредственным следствием является то, что теперь для того, чтобы <img src="https://tex.s2cms.ru/svg/%5Calpha_l" alt="\alpha_l" /> была положительной, необходимо только <img src="https://tex.s2cms.ru/svg/(1-%5Cvarepsilon_l)%3E%201%20%2F%20K" alt="(1-\varepsilon_l)&gt; 1 / K" />, т.е. точность каждого слабого классификатора лучше, чем раннее угадывание, а не <img src="https://tex.s2cms.ru/svg/1%2F2" alt="1/2" />.
+Алгоритм SAMME имеет одну и ту же структуру что и AdaBoost, с простой но тонкой разницей в <img src="https://tex.s2cms.ru/svg/(1)" alt="(1)" />. 
+
+Для двухклассовых задач классификации частота ошибок случайного предположения равна <img src="https://tex.s2cms.ru/svg/1%2F2" alt="1/2" />.
+
+В многоклассовом случае гораздо труднее добиться того, чтобы частота ошибок случайного угадывания была <img src="https://tex.s2cms.ru/svg/(K%20-%201)%20%2F%20K" alt="(K - 1) / K" />. Как отмечают создатели AdaBoost, основным недостатком AdaBoost является то, что он не способен обрабатывать слабых учащихся с частотой ошибок больше <img src="https://tex.s2cms.ru/svg/1%2F2" alt="1/2" />. AdaBoost может легко выйти из строя в случае с несколькими классами. 
+
+Очевидно, что при K = 2, SAMME сводится к AdaBoost. Добавление <img src="https://tex.s2cms.ru/svg/ln%20(K%20-%201)" alt="ln (K - 1)" /> в <img src="https://tex.s2cms.ru/svg/(1)" alt="(1)" /> является критическим в многоклассовом случае <img src="https://tex.s2cms.ru/svg/(K%20%3E%202)" alt="(K &gt; 2)" />. 
+
+Непосредственным следствием является то, что теперь для того, чтобы <img src="https://tex.s2cms.ru/svg/%5Calpha_l" alt="\alpha_l" /> была положительной, необходимо только <img src="https://tex.s2cms.ru/svg/(1-%5Cvarepsilon_l)%3E%201%20%2F%20K" alt="(1-\varepsilon_l)&gt; 1 / K" /> , т.е. точность каждого слабого классификатора лучше, чем раннее угадывание, а не <img src="https://tex.s2cms.ru/svg/1%2F2" alt="1/2" />.
+
+
+ 
 
 
 
